@@ -1,1 +1,5 @@
-<h3>Hi from error list</h3>
+<ul class="error-messages" *ngIf="errorList">
+    <li *ngFor="let error of errorList">
+        {{ error }}
+    </li>
+</ul>
