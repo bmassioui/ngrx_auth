@@ -8,6 +8,7 @@
             <a [routerLink]="['/login']">Have an account?</a>
           </p>
           <!-- <app-list-errors [errors]="errors"></app-list-errors> -->
+          <shared-errorlist-component></shared-errorlist-component>
           <h3>Backend Errors</h3>
           <form [formGroup]="registerForm" (ngSubmit)="register">
             <!-- <fieldset [disabled]="isSubmitting"> -->
