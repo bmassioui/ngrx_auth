@@ -21,9 +21,9 @@ export class RegisterComponent implements OnInit{
      */
     initializeRegisterForm(): void{
         this.registerForm = this.formBuilder.group({
-            username: new FormControl('', [Validators.required, Validators.minLength(7), Validators.pattern('^[a-zA-Z0-9]')]),
+            username: new FormControl('', [Validators.required, Validators.minLength(7), Validators.pattern('^[a-zA-Z0-9]')]), // Only Upper/Lower letters and numbers are allowed
             email: new FormControl('', [Validators.required,Validators.email]),
-            password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$')])
+            password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$')]) // Minimum eight characters, at least one letter and one number
         })
     }
 
@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit{
      * Register
      */
     register(): void{
-        console.log(this.registerForm.value)
+        // console.log(this.registerForm.value)
+        console.log('hellow')
     }
 }
