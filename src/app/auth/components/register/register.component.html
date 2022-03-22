@@ -9,7 +9,7 @@
           </p>
           <!-- <app-list-errors [errors]="errors"></app-list-errors> -->
           <h3>Backend Errors</h3>
-          <form>
+          <form [formGroup]="registerForm" (ngSubmit)="register">
             <!-- <fieldset [disabled]="isSubmitting"> -->
               <fieldset class="form-group">
                   <legend></legend>
