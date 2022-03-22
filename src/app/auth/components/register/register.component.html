@@ -9,52 +9,53 @@
         </p>
         <shared-errorlist-component [errors]="errors"></shared-errorlist-component>
         <form [formGroup]="registerForm" (ngSubmit)="register()">
-          <!-- <fieldset [disabled]="isSubmitting"> -->
-          <fieldset class="form-group">
-            <legend></legend>
-            <input formControlName="username" placeholder="Username" class="form-control form-control-lg" type="text" />
-            <div
-              *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.dirty && registerForm.get('username')?.hasError">
-              <small class="text-danger" *ngIf="registerForm.get('username')?.hasError('required')">
-                <h6>This field is required.</h6>
-              </small>
-              <small class="text-danger" *ngIf="registerForm.get('username')?.hasError('minlength')">
-                <h6>The minimum length for this field is 7 characters.</h6>
-              </small>
-            </div>
+          <fieldset [disabled]="isSubmitting">
+            <fieldset class="form-group">
+              <legend></legend>
+              <input formControlName="username" placeholder="Username" class="form-control form-control-lg"
+                type="text" />
+              <div
+                *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.dirty && registerForm.get('username')?.hasError">
+                <small class="text-danger" *ngIf="registerForm.get('username')?.hasError('required')">
+                  <h6>This field is required.</h6>
+                </small>
+                <small class="text-danger" *ngIf="registerForm.get('username')?.hasError('minlength')">
+                  <h6>The minimum length for this field is 7 characters.</h6>
+                </small>
+              </div>
+            </fieldset>
+            <fieldset class="form-group">
+              <legend></legend>
+              <input formControlName="email" placeholder="Email" class="form-control form-control-lg" type="text" />
+              <div
+                *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.dirty && registerForm.get('email')?.hasError">
+                <small class="text-danger" *ngIf="registerForm.get('email')?.hasError('required')">
+                  <h6>This field is required.</h6>
+                </small>
+                <small class="text-danger" *ngIf="registerForm.get('email')?.hasError('email')">
+                  <h6>Email is invalid.</h6>
+                </small>
+              </div>
+            </fieldset>
+            <fieldset class="form-group">
+              <legend></legend>
+              <input formControlName="password" placeholder="Password" class="form-control form-control-lg"
+                type="password" />
+              <div
+                *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.dirty && registerForm.get('password')?.hasError">
+                <small class="text-danger" *ngIf="registerForm.get('password')?.hasError('required')">
+                  <h6>This field is required.</h6>
+                </small>
+                <small class="text-danger" *ngIf="registerForm.get('password')?.hasError('minlength')">
+                  <h6>The minimum length for this field is 8 characters.</h6>
+                </small>
+              </div>
+            </fieldset>
+            <button class="btn btn-lg btn-primary pull-xs-right" type="submit"
+              [disabled]="registerForm.touched && registerForm.dirty && registerForm.invalid">
+              Sign Up
+            </button>
           </fieldset>
-          <fieldset class="form-group">
-            <legend></legend>
-            <input formControlName="email" placeholder="Email" class="form-control form-control-lg" type="text" />
-            <div
-              *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.dirty && registerForm.get('email')?.hasError">
-              <small class="text-danger" *ngIf="registerForm.get('email')?.hasError('required')">
-                <h6>This field is required.</h6>
-              </small>
-              <small class="text-danger" *ngIf="registerForm.get('email')?.hasError('email')">
-                <h6>Email is invalid.</h6>
-              </small>
-            </div>
-          </fieldset>
-          <fieldset class="form-group">
-            <legend></legend>
-            <input formControlName="password" placeholder="Password" class="form-control form-control-lg"
-              type="password" />
-            <div
-              *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.dirty && registerForm.get('password')?.hasError">
-              <small class="text-danger" *ngIf="registerForm.get('password')?.hasError('required')">
-                <h6>This field is required.</h6>
-              </small>
-              <small class="text-danger" *ngIf="registerForm.get('password')?.hasError('minlength')">
-                <h6>The minimum length for this field is 8 characters.</h6>
-              </small>
-            </div>
-          </fieldset>
-          <button class="btn btn-lg btn-primary pull-xs-right" type="submit"
-            [disabled]="registerForm.touched && registerForm.dirty && registerForm.invalid">
-            Sign Up
-          </button>
-          <!-- </fieldset> -->
         </form>
       </div>
 

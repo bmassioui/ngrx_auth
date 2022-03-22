@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
 
     public registerForm: FormGroup = new FormGroup({})
     public errors: Errors = { errors: {} };
+    public isSubmitting: boolean = false;
 
     constructor(private formBuilder: FormBuilder) { }
 
@@ -33,8 +34,14 @@ export class RegisterComponent implements OnInit {
     /**
      * Register
      */
-    register(): void {
+    async register(): Promise<void> {
         // console.log(this.registerForm.value)
+        this.isSubmitting = true
+
+        await new Promise(f => setTimeout(f, 2000))
+
+        this.isSubmitting = false
+
         console.log('hello')
     }
 }
