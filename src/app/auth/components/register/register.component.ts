@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Errors } from "src/app/core";
+import { Store } from "@ngrx/store";
+import { Errors } from "src/app/shared/models";
+import { registerAction } from "../../store/auth.actions";
 
 @Component({
     selector: 'auth-register-component',
@@ -14,7 +16,7 @@ export class RegisterComponent implements OnInit {
     public errors: Errors = { errors: {} };
     public isSubmitting: boolean = false;
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder, private store: Store) { }
 
     ngOnInit(): void {
         this.initializeRegisterForm();
@@ -34,14 +36,12 @@ export class RegisterComponent implements OnInit {
     /**
      * Register
      */
-    async register(): Promise<void> {
+    register(): void {
         // console.log(this.registerForm.value)
         this.isSubmitting = true
 
-        await new Promise(f => setTimeout(f, 2000))
+        this.store.dispatch(registerAction(this.registerForm.value))
 
         this.isSubmitting = false
-
-        console.log('hello')
     }
 }
