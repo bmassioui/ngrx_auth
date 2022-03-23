@@ -48,10 +48,10 @@ export class RegisterComponent implements OnInit {
      */
     register(): void {
         let registerUser: RegisterUserInterface = { user: this.registerForm.value }
-        this.store.dispatch(registerAction(this.registerForm.value))
-        this.userService.register(registerUser).subscribe({
-            next: (currentUser: CurrentUserInterface) => console.log(currentUser),
-            error: (backendErros) => this.errors = backendErros.error
-        })
+        this.store.dispatch(registerAction({ request: registerUser }))
+        // this.userService.register(registerUser).subscribe({
+        //     next: (currentUser: CurrentUserInterface) => console.log(currentUser),
+        //     error: (backendErros) => this.errors = backendErros.error
+        // })
     }
 }
