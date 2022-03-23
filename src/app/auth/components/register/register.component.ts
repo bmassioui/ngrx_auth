@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
         this.store.dispatch(registerAction(this.registerForm.value))
         this.userService.register(registerUser).subscribe({
             next: (currentUser: CurrentUserInterface) => console.log(currentUser),
-            error: (backendErros) => console.log(backendErros)
+            error: (backendErros) => this.errors = backendErros.error
         })
     }
 }
