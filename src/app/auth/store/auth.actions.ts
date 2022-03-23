@@ -1,4 +1,5 @@
 import { createAction, props } from "@ngrx/store";
+import { Errors } from "src/app/shared/models";
 import { CurrentUserInterface } from "src/app/shared/types/auth";
 import { ActionTypes } from "../types/actionTypes";
 import { RegisterUserInterface } from "../types/registerUser.interface";
@@ -23,4 +24,6 @@ export const registerSuccessAction = createAction(
  * Register Failure
  */
 export const registerFailureAction = createAction(
-    ActionTypes.REGISTER_FAILURE)
+    ActionTypes.REGISTER_FAILURE,
+    props<{ errors: Errors }>()
+)

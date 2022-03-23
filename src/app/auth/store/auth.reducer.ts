@@ -3,7 +3,10 @@ import { AuthStateInterface } from "../types/authState.interface";
 import { registerAction } from "./auth.actions";
 
 const authInitialState: AuthStateInterface = {
-    isSubmitting: false
+    isSubmitting: false,
+    currentUser: null,
+    isLoggedIn: false,
+    validationErrors: null
 }
 
 /**
