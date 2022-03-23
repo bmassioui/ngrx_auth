@@ -1,5 +1,5 @@
 export enum ActionTypes {
     REGISTER = '[Auth] Register',
-    REGISTER_SUCCEEDED = '[Auth] Regisrtation Succeeded',
-    REGISTER_FAILED = '[Auth] Registration Failed',
+    REGISTER_SUCCESS = '[Auth] Register Success',
+    REGISTER_FAILURE = '[Auth] Register Failure',
 }

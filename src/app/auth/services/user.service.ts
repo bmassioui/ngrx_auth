@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { CurrentUserInterface } from "src/app/shared/types/auth";
 import { environment } from "src/environments/environment";
 import { RegisterUserInterface } from "../types/registerUser.interface";
