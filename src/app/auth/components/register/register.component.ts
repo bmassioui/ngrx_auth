@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { select, Store } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { Errors } from "src/app/shared/models";
-import { CurrentUserInterface } from "src/app/shared/types/auth";
 import { UserService } from "../../services/user.service";
 import { registerAction } from "../../store/auth.actions";
 import { isSubmitting, validationErrors } from "../../store/auth.selectors";
