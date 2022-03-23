@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { CurrentUserInterface } from "src/app/shared/types/auth";
 import { environment } from "src/environments/environment";
 import { RegisterUserInterface } from "../types/registerUser.interface";
@@ -12,12 +12,11 @@ export class UserService {
 
     /**
      * Register new user
-     * @param user 
+     * @param registerUserInterface 
      * @returns 
      */
-    register(user: RegisterUserInterface): Observable<CurrentUserInterface> {
+    register(registerUserInterface: RegisterUserInterface): Observable<CurrentUserInterface> {
         const register_endpoint = `${environment.api_url}/users`
-
-        return this.httpClient.post<CurrentUserInterface>(register_endpoint, user)
+        return this.httpClient.post<CurrentUserInterface>(register_endpoint, registerUserInterface)
     }
 }

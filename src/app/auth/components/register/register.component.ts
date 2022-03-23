@@ -7,6 +7,7 @@ import { CurrentUserInterface } from "src/app/shared/types/auth";
 import { UserService } from "../../services/user.service";
 import { registerAction } from "../../store/auth.actions";
 import { isSubmitting } from "../../store/auth.selectors";
+import { RegisterUserInterface } from "../../types/registerUser.interface";
 
 @Component({
     selector: 'auth-register-component',
@@ -46,10 +47,11 @@ export class RegisterComponent implements OnInit {
      * Register
      */
     register(): void {
+        let registerUser: RegisterUserInterface = { user: this.registerForm.value }
         this.store.dispatch(registerAction(this.registerForm.value))
-        this.userService.register(this.registerForm.value).subscribe({
+        this.userService.register(registerUser).subscribe({
             next: (currentUser: CurrentUserInterface) => console.log(currentUser),
-            error: (backendErros) => this.errors = backendErros
+            error: (backendErros) => console.log(backendErros)
         })
     }
 }
