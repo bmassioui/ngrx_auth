@@ -9,7 +9,7 @@
         </p>
         <shared-errorlist-component [errors]="errors"></shared-errorlist-component>
         <form [formGroup]="registerForm" (ngSubmit)="register()">
-          <fieldset [disabled]="isSubmitting">
+          <fieldset [disabled]="isSubmitting$ | async">
             <fieldset class="form-group">
               <legend></legend>
               <input formControlName="username" placeholder="Username" class="form-control form-control-lg"
@@ -51,8 +51,7 @@
                 </small>
               </div>
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right" type="submit"
-              [disabled]="registerForm.invalid">
+            <button class="btn btn-lg btn-primary pull-xs-right" type="submit" [disabled]="registerForm.invalid">
               Sign Up
             </button>
           </fieldset>

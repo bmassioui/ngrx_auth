@@ -7,6 +7,7 @@ import { SharedModule } from "../shared/shared.module";
 
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
+import { UserService } from "./services/user.service";
 import { reducers } from "./store/auth.reducer";
 
 const authRoutes: Routes = [
@@ -27,6 +28,7 @@ const authRoutes: Routes = [
         SharedModule,
         StoreModule.forFeature('auth', reducers)
     ],
-    declarations: [RegisterComponent, LoginComponent]
+    declarations: [RegisterComponent, LoginComponent],
+    providers: [UserService]
 })
 export class AuthModule { }

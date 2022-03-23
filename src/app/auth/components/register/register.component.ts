@@ -1,8 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { Store } from "@ngrx/store";
+import { select, Store } from "@ngrx/store";
+import { Observable, of } from "rxjs";
 import { Errors } from "src/app/shared/models";
+import { CurrentUserInterface } from "src/app/shared/types/auth";
+import { UserService } from "../../services/user.service";
 import { registerAction } from "../../store/auth.actions";
+import { isSubmitting } from "../../store/auth.selectors";
 
 @Component({
     selector: 'auth-register-component',
@@ -13,13 +17,14 @@ import { registerAction } from "../../store/auth.actions";
 export class RegisterComponent implements OnInit {
 
     public registerForm: FormGroup = new FormGroup({})
-    public errors: Errors = { errors: {} };
-    public isSubmitting: boolean = false;
+    public errors: Errors = { errors: {} }
+    public isSubmitting$: Observable<boolean> = of(false)
 
-    constructor(private formBuilder: FormBuilder, private store: Store) { }
+    constructor(private formBuilder: FormBuilder, private store: Store, private userService: UserService) { }
 
     ngOnInit(): void {
-        this.initializeRegisterForm();
+        this.initializeRegisterForm()
+        this.initializeProperties()
     }
 
     /**
@@ -33,15 +38,18 @@ export class RegisterComponent implements OnInit {
         })
     }
 
+    initializeProperties(): void {
+        this.isSubmitting$ = this.store.pipe(select(isSubmitting));
+    }
+
     /**
      * Register
      */
     register(): void {
-        // console.log(this.registerForm.value)
-        this.isSubmitting = true
-
         this.store.dispatch(registerAction(this.registerForm.value))
-
-        this.isSubmitting = false
+        this.userService.register(this.registerForm.value).subscribe({
+            next: (currentUser: CurrentUserInterface) => console.log(currentUser),
+            error: (backendErros) => this.errors = backendErros
+        })
     }
 }
