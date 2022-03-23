@@ -6,7 +6,7 @@ import { Errors } from "src/app/shared/models";
 import { CurrentUserInterface } from "src/app/shared/types/auth";
 import { UserService } from "../../services/user.service";
 import { registerAction } from "../../store/auth.actions";
-import { isSubmitting } from "../../store/auth.selectors";
+import { isSubmitting, validationErrors } from "../../store/auth.selectors";
 import { RegisterUserInterface } from "../../types/registerUser.interface";
 
 @Component({
@@ -18,7 +18,7 @@ import { RegisterUserInterface } from "../../types/registerUser.interface";
 export class RegisterComponent implements OnInit {
 
     public registerForm: FormGroup = new FormGroup({})
-    public errors: Errors = { errors: {} }
+    public backEndErrors$: Observable<Errors | null> = of(null)
     public isSubmitting$: Observable<boolean> = of(false)
 
     constructor(private formBuilder: FormBuilder, private store: Store, private userService: UserService) { }
@@ -40,7 +40,8 @@ export class RegisterComponent implements OnInit {
     }
 
     initializeProperties(): void {
-        this.isSubmitting$ = this.store.pipe(select(isSubmitting));
+        this.isSubmitting$ = this.store.pipe(select(isSubmitting))
+        this.backEndErrors$ = this.store.pipe(select(validationErrors))
     }
 
     /**
@@ -49,9 +50,5 @@ export class RegisterComponent implements OnInit {
     register(): void {
         let registerUser: RegisterUserInterface = { user: this.registerForm.value }
         this.store.dispatch(registerAction({ request: registerUser }))
-        // this.userService.register(registerUser).subscribe({
-        //     next: (currentUser: CurrentUserInterface) => console.log(currentUser),
-        //     error: (backendErros) => this.errors = backendErros.error
-        // })
     }
 }

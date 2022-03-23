@@ -7,7 +7,7 @@
         <p class="text-xs-center">
           <a [routerLink]="['/login']">Have an account?</a>
         </p>
-        <shared-errorlist-component [errors]="errors"></shared-errorlist-component>
+        <shared-errorlist-component [errors]="backEndErrors$ | async"></shared-errorlist-component>
         <form [formGroup]="registerForm" (ngSubmit)="register()">
           <fieldset [disabled]="isSubmitting$ | async">
             <fieldset class="form-group">

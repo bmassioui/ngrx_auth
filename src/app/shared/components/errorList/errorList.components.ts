@@ -15,9 +15,16 @@ export class ErrorListComponent {
      * Set errors
      */
     @Input()
-    set errors(errorList: Errors) {
+    set errors(errorList: Errors | null) {
+        
+        console.log(errorList)
+        
+        if (errorList == null) return
+        
         this.formattedErrors = Object.keys(errorList.errors || {})
-            .map(key => `${key} ${errorList.errors[key]}`)
+        .map(key => `${key} ${errorList.errors[key]}`)
+        
+        console.log(this.formattedErrors    )
     }
 
     /**
